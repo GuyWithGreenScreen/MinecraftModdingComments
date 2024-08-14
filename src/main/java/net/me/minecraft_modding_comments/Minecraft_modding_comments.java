@@ -1,7 +1,10 @@
 package net.me.minecraft_modding_comments;
 
 import com.mojang.logging.LogUtils;
+import net.me.minecraft_modding_comments.entity.ModEntities;
+import net.me.minecraft_modding_comments.entity.client.CanonRenderer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -54,6 +57,8 @@ public class Minecraft_modding_comments {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        ModEntities.register(modEventBus);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -90,8 +95,7 @@ public class Minecraft_modding_comments {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            EntityRenderers.register(ModEntities.CANON.get(), CanonRenderer::new);
         }
     }
 }

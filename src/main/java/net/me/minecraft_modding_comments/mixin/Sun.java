@@ -9,8 +9,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Zombie.class)
 public class Sun {
+
+    /*
     @Inject(method = "isSunSensitive", at = @At("HEAD"), cancellable = true)
     protected void suntest(CallbackInfoReturnable<Boolean> cir) {
         cir.setReturnValue(false);
     }
+
+     */
 }

@@ -17,9 +17,11 @@ import org.openjdk.nashorn.internal.ir.Block;
 
 import static net.minecraft.world.damagesource.DamageTypes.ON_FIRE;
 
-@EventBusSubscriber(modid = Minecraft_modding_comments.MODID)
+//@EventBusSubscriber(modid = Minecraft_modding_comments.MODID)
 public class Sun {
 
+
+    /*
     @SubscribeEvent
     public static void Sun(EntityTickEvent.Post event) {
         Entity entity = event.getEntity();
@@ -48,6 +50,8 @@ public class Sun {
             }
         }
     }
+
+     */
 
 
 }
