@@ -3,6 +3,7 @@ package net.me.minecraft_modding_comments;
 import com.mojang.logging.LogUtils;
 import net.me.minecraft_modding_comments.entity.ModEntities;
 import net.me.minecraft_modding_comments.entity.client.CanonRenderer;
+import net.me.minecraft_modding_comments.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -43,7 +44,7 @@ public class Minecraft_modding_comments {
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    // Creates a creative tab with the id "minecraft_modding_comments:example_tab" for the example item, that is placed after the combat tab
+    // Creates a creative tab with the id "minecraft_modding_comments:example_tab" for the example e, that is placed after the combat tab
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
@@ -59,7 +60,9 @@ public class Minecraft_modding_comments {
 
         ModEntities.register(modEventBus);
 
-        // Register the item to a creative tab
+        ModItems.register(modEventBus);
+
+        // Register the e to a creative tab
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -78,7 +81,7 @@ public class Minecraft_modding_comments {
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
-    // Add the example block item to the building blocks tab
+    // Add the example block e to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
     }
 

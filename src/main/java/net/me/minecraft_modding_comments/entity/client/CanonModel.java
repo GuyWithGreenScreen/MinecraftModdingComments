@@ -41,7 +41,7 @@ public class CanonModel extends HierarchicalModel<CanonEntity> {
 
     private void applyHeadRotation(float headyaw, float headpitch) {
         headyaw = Math.clamp(headyaw, 0f, 360f);
-        headpitch = Math.clamp(headpitch, -10f, 2f);
+        headpitch = Math.clamp(headpitch, -25f, 5f);
 
         this.Cannon.yRot = headyaw * ((float) (Math.PI / -180f));
         this.Cannon.xRot = headpitch * ((float) (Math.PI / -180f));
