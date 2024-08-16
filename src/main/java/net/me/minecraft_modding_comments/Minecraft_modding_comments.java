@@ -57,6 +57,8 @@ public class Minecraft_modding_comments {
 
         ModBlocks.register(modEventBus);
 
+        ModEntities.register(modEventBus);
+
 
 
         // Register the Deferred Register to the mod event bus so blocks get registered
