@@ -6,7 +6,8 @@
   "refmap": "minecraft_modding_comments.refmap.json",
   "mixins": [
     "Sun",
-    "Golem"
+    "Golem",
+    "Potato"
   ],
   "client": [
   ],
