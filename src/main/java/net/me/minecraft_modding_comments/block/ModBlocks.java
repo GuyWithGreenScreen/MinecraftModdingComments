@@ -17,6 +17,7 @@ public class ModBlocks {
 
 
     public static final DeferredBlock<Block> LAMP = registerBlock("lamp", () -> new lamp_block(BlockBehaviour.Properties.of().noOcclusion().destroyTime(4f)));
+    public static final DeferredBlock<Block> CHEESE = registerBlock("cheese", () -> new Block(BlockBehaviour.Properties.of().noOcclusion().destroyTime(4f)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
