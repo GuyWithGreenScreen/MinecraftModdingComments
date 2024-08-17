@@ -2,31 +2,18 @@ package net.me.minecraft_modding_comments.event;
 
 import net.me.minecraft_modding_comments.Minecraft_modding_comments;
 import net.me.minecraft_modding_comments.item.ModItems;
-import net.me.minecraft_modding_comments.item.custom.Hot_Potato;
 import net.me.minecraft_modding_comments.tools.tools;
-import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.util.TriState;
-import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDestroyBlockEvent;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerDestroyItemEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -36,8 +23,8 @@ public class Potato {
 
 
     @SubscribeEvent
-    public static void breakIce(LivingDestroyBlockEvent event) {
-        if (event.getEntity().getTags().contains("hot_potato") && event.getState().getBlock().equals(Blocks.ICE)) {
+    public static void breakIce(LivingDeathEvent event) {
+        if (event.getEntity().getTags().contains("hot_potato")) {
             System.out.println("e");
             event.getEntity().removeTag("hot_potato");
         }
