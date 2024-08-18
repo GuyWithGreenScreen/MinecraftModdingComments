@@ -7,7 +7,7 @@ import net.minecraft.world.level.Level;
 import java.util.HashMap;
 
 public class LevelInteractionTools {
-    public static HashMap Sphere(ShapeCalculation shape, Level level, int radius) {
+    public static void Sphere(ShapeCalculation shape, Level level, int radius) {
         if (shape.equals(ShapeCalculation.SQUARE)) {
             //for (int i = 1; i < )
         }

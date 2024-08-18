@@ -69,4 +69,11 @@ public class tools {
     public static BlockPos vectorToBlockPos(Vector3i vector) {
         return new BlockPos(((int) vector.x), ((int) vector.y), ((int) vector.z));
     }
+
+    public static boolean randomChance(double chance) {
+        if (chance > 1) {
+            return true;
+        }
+        return chance > Math.random();
+    }
 }

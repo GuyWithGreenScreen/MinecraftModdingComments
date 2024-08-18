@@ -15,6 +15,7 @@ public class ModItems {
     public static DeferredItem<Item> CANON_SPAWNER = ITEMS.registerItem("canon_spawner", Canon_spawner::new);
     public static DeferredItem<Item> WAND = ITEMS.registerItem("wand", Wand::new);
     public static DeferredItem<Item> HOT_POTATO = ITEMS.registerItem("hot_potato", Hot_Potato::new);
+    public static DeferredItem<Item> DEODORANT = ITEMS.registerItem("deodorant", Item::new);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
