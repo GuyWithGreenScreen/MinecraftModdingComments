@@ -8,6 +8,10 @@ import org.joml.Vector3i;
 
 public class tools {
 
+    public static Vec3 ceilVec3(Vec3 vec3) {
+        return new Vec3(Math.ceil(vec3.x), Math.ceil(vec3.y), Math.ceil(vec3.z));
+    }
+
     public static int toPositive(int number) {
         if (number < 0) {
             return number * -1;
@@ -30,6 +34,11 @@ public class tools {
     public static int randomInt(int from, int to) {
         return ((int)(Math.random()*(to-from)))+from;
     }
+
+    public static double randomDouble(double from, double to) {
+        return ((int)(Math.random()*(to-from)))+from;
+    }
+
 
     public static int alwaysAbove(int value, int limit) {
         if (value < limit) {

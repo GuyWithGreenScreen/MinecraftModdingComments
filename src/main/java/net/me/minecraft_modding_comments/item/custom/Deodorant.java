@@ -19,7 +19,7 @@ public class Deodorant extends Item {
         if (interactionTarget instanceof Zombie) {
             if (!interactionTarget.getTags().contains("deodorant")) {
                 interactionTarget.addTag("deodorant");
-                interactionTarget.setTicksFrozen(10);
+                interactionTarget.setTicksFrozen(40);
             }
         }
         return InteractionResult.SUCCESS;

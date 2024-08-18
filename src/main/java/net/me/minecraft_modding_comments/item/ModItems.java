@@ -1,9 +1,7 @@
 package net.me.minecraft_modding_comments.item;
 
 import net.me.minecraft_modding_comments.Minecraft_modding_comments;
-import net.me.minecraft_modding_comments.item.custom.Canon_spawner;
-import net.me.minecraft_modding_comments.item.custom.Hot_Potato;
-import net.me.minecraft_modding_comments.item.custom.Wand;
+import net.me.minecraft_modding_comments.item.custom.*;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -15,7 +13,9 @@ public class ModItems {
     public static DeferredItem<Item> CANON_SPAWNER = ITEMS.registerItem("canon_spawner", Canon_spawner::new);
     public static DeferredItem<Item> WAND = ITEMS.registerItem("wand", Wand::new);
     public static DeferredItem<Item> HOT_POTATO = ITEMS.registerItem("hot_potato", Hot_Potato::new);
-    public static DeferredItem<Item> DEODORANT = ITEMS.registerItem("deodorant", Item::new);
+    public static DeferredItem<Item> DEODORANT = ITEMS.registerItem("deodorant", Deodorant::new);
+    public static DeferredItem<Item> TACO = ITEMS.registerItem("taco", Item::new);
+    public static DeferredItem<Item> CHIP = ITEMS.registerItem("chip", Chip::new);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

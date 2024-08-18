@@ -18,10 +18,10 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 
-@EventBusSubscriber(modid = Minecraft_modding_comments.MODID)
+//@EventBusSubscriber(modid = Minecraft_modding_comments.MODID)
 public class Fish {
 
-    @SubscribeEvent
+    //@SubscribeEvent
     public static void FishSpawn(EntityEvent.EnteringSection event) {
         if (event.getEntity() instanceof Cod || event.getEntity() instanceof Salmon || event.getEntity() instanceof TropicalFish) {
             if (tools.randomChance(0.25d)) {
@@ -32,7 +32,8 @@ public class Fish {
                         for (int i = 0; i < 5; i++) {
                             Warden warden = new Warden(EntityType.WARDEN, entity.level());
                             warden.setPos(entity.position().add(new Vec3(tools.randomInt(-4,4), 0, tools.randomInt(-4,4) )));
-                            warden.swing(InteractionHand.MAIN_HAND);
+                            warden.setPersistenceRequired();
+                            warden.setTarget(((Player) entity));
                             entity.level().addFreshEntity(warden);
                         }
                     }
