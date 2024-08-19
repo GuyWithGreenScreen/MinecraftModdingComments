@@ -2,6 +2,7 @@ package net.me.minecraft_modding_comments.block;
 
 import net.me.minecraft_modding_comments.Minecraft_modding_comments;
 import net.me.minecraft_modding_comments.block.custom.lamp_block;
+import net.me.minecraft_modding_comments.block.custom.tnt_roulette;
 import net.me.minecraft_modding_comments.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -20,10 +21,12 @@ public class ModBlocks {
 
 
     public static final DeferredBlock<Block> LAMP = registerBlock("lamp", () -> new lamp_block(BlockBehaviour.Properties.of().noOcclusion().destroyTime(4f)));
+    public static final DeferredBlock<Block> TNT_ROULETTE = registerBlock("tnt_roulette", () -> new tnt_roulette(BlockBehaviour.Properties.of().noOcclusion().destroyTime(4f)));
     public static final DeferredBlock<Block> CHEESE = registerBlock("cheese", () -> new Block(BlockBehaviour.Properties.of().noOcclusion().destroyTime(4f)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
+        registerBlockItem(name, toReturn);
         return toReturn;
     }
 

@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.me.minecraft_modding_comments.block.ModBlocks;
 import net.me.minecraft_modding_comments.entity.ModEntities;
 import net.me.minecraft_modding_comments.entity.client.CanonRenderer;
+import net.me.minecraft_modding_comments.entity.client.RacoonRenderer;
 import net.me.minecraft_modding_comments.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -106,6 +107,7 @@ public class Minecraft_modding_comments {
         public static void onClientSetup(FMLClientSetupEvent event) {
             // Some client setup code
             EntityRenderers.register(ModEntities.CANON.get(), CanonRenderer::new);
+            EntityRenderers.register(ModEntities.RACOON.get(), RacoonRenderer::new);
         }
     }
 }

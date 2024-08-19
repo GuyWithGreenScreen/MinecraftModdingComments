@@ -1,6 +1,7 @@
 package net.me.minecraft_modding_comments.event;
 
 import net.me.minecraft_modding_comments.Minecraft_modding_comments;
+import net.me.minecraft_modding_comments.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.sounds.SoundEvents;
@@ -51,7 +52,8 @@ public class Lighting {
         Level level = event.getLevel();
         Player player = event.getEntity();
 
-        if(event.getEntity().getMainHandItem().is(Items.FLINT_AND_STEEL) || event.getEntity().getOffhandItem().is(Items.FLINT_AND_STEEL)) {
+        if((event.getEntity().getMainHandItem().is(Items.FLINT_AND_STEEL) || event.getEntity().getOffhandItem().is(Items.FLINT_AND_STEEL))
+                && !level.getBlockState(event.getPos()).getBlock().equals(ModBlocks.TNT_ROULETTE.get())) {
             if (((int) (Math.random()*100)) < 20) {
 
 

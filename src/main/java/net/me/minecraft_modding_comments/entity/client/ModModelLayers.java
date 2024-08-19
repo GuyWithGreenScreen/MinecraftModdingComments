@@ -7,4 +7,6 @@ import net.minecraft.resources.ResourceLocation;
 public class ModModelLayers {
     public static final ModelLayerLocation CANON = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(Minecraft_modding_comments.MODID, "canon"), "main");
+    public static final ModelLayerLocation RACOON = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(Minecraft_modding_comments.MODID, "racoon"), "main");
 }

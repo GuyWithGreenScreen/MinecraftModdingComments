@@ -16,6 +16,7 @@ public class ModItems {
     public static DeferredItem<Item> DEODORANT = ITEMS.registerItem("deodorant", Deodorant::new);
     public static DeferredItem<Item> TACO = ITEMS.registerItem("taco", Item::new);
     public static DeferredItem<Item> CHIP = ITEMS.registerItem("chip", Chip::new);
+    public static DeferredItem<Item> BIG_MAC = ITEMS.registerItem("big_mac", Item::new);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
