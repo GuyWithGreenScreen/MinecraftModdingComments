@@ -6,6 +6,7 @@ import net.me.minecraft_modding_comments.entity.ModEntities;
 import net.me.minecraft_modding_comments.entity.client.CanonRenderer;
 import net.me.minecraft_modding_comments.entity.client.RacoonRenderer;
 import net.me.minecraft_modding_comments.item.ModItems;
+import net.me.minecraft_modding_comments.sound.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -59,6 +60,8 @@ public class Minecraft_modding_comments {
         ModBlocks.register(modEventBus);
 
         ModEntities.register(modEventBus);
+
+        ModSounds.register(modEventBus);
 
 
 

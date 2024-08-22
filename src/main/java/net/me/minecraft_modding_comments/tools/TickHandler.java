@@ -11,10 +11,11 @@ import java.util.HashMap;
 public class TickHandler {
     public static HashMap<Entity, Integer> entityTickHandlerHashMap = new HashMap<Entity, Integer>();
     public static HashMap<TickObject, Integer> objectTickHandlerHashMap = new HashMap<TickObject, Integer>();
-    public static HashMap<TickObject, Integer> objectTickHandlerHashMapNoDuplicates = new HashMap<TickObject, Integer>();
+    public static HashMap<HashMap<TickObject, Integer>, Integer> objectTickHandlerHashMapNoDuplicates = new HashMap<HashMap<TickObject, Integer>, Integer>();
+    public static HashMap<TickObject, Integer> whileLoopMap = new HashMap<TickObject, Integer>();
     public static ArrayList<Entity> MarkedForRemoval = new ArrayList<Entity>();
     public static ArrayList<TickObject> ObjectMarkedForRemoval = new ArrayList<TickObject>();
-    public static ArrayList<TickObject> ObjectMarkedForRemovalNoDuplicates = new ArrayList<TickObject>();
+    public static ArrayList<HashMap<TickObject, Integer>> ObjectMarkedForRemovalNoDuplicates = new ArrayList<HashMap<TickObject, Integer>>();
 
     public static void update() {
         if (!entityTickHandlerHashMap.isEmpty()) {
@@ -46,22 +47,39 @@ public class TickHandler {
         }
         for (TickObject tickObject : objectTickHandlerHashMap.keySet()) {
             if (tickObject.value() == objectTickHandlerHashMap.get(tickObject)) {
-                tickObject.runnable2().run();
+                tickObject.runnable().run();
                 ObjectMarkedForRemoval.add(tickObject);
             }
         }
         if (!objectTickHandlerHashMapNoDuplicates.isEmpty()) {
-            for (TickObject tickObject : objectTickHandlerHashMapNoDuplicates.keySet()) {
-                if (objectTickHandlerHashMapNoDuplicates.get(tickObject) > 2100000000) {
-                    objectTickHandlerHashMapNoDuplicates.replace(tickObject, 0);
-                }
-                objectTickHandlerHashMapNoDuplicates.replace(tickObject, objectTickHandlerHashMapNoDuplicates.get(tickObject) + 1);
+            for (HashMap<TickObject, Integer> hashMap : objectTickHandlerHashMapNoDuplicates.keySet()) {
+                objectTickHandlerHashMapNoDuplicates.replace(hashMap, objectTickHandlerHashMapNoDuplicates.get(hashMap) + 1);
             }
         }
-        for (TickObject tickObject : objectTickHandlerHashMapNoDuplicates.keySet()) {
-            if (tickObject.value() == objectTickHandlerHashMapNoDuplicates.get(tickObject)) {
-                tickObject.runnable2().run();
-                ObjectMarkedForRemoval.add(tickObject);
+        for (HashMap<TickObject, Integer> hashMap : objectTickHandlerHashMapNoDuplicates.keySet()) {
+            for (TickObject tickObject : hashMap.keySet()) {
+                if (tickObject.value() <= objectTickHandlerHashMapNoDuplicates.get(hashMap)) {
+                    tickObject.runnable().run();
+                    ObjectMarkedForRemovalNoDuplicates.add(hashMap);
+                }
+            }
+        }
+        if (!whileLoopMap.isEmpty()) {
+            for (TickObject tickObject : whileLoopMap.keySet()) {
+                if (whileLoopMap.get(tickObject) > 2100000000) {
+                    whileLoopMap.replace(tickObject, 0);
+                }
+                whileLoopMap.replace(tickObject, whileLoopMap.get(tickObject) + 1);
+            }
+            for (TickObject tickObject : whileLoopMap.keySet()) {
+                if (tickObject.value() < whileLoopMap.get(tickObject)) {
+                    ObjectMarkedForRemoval.add(tickObject);
+                    tickObject.runnable2().run();
+                } else {
+                    if (tickObject.runnable() != null) {
+                        tickObject.runnable().run();
+                    }
+                }
             }
         }
         if (!ObjectMarkedForRemoval.isEmpty()) {
@@ -69,6 +87,12 @@ public class TickHandler {
                 objectTickHandlerHashMap.remove(tickObject);
             }
             ObjectMarkedForRemoval.clear();
+        }
+        if (!ObjectMarkedForRemovalNoDuplicates.isEmpty()) {
+            for (HashMap<TickObject, Integer> hashMap : ObjectMarkedForRemovalNoDuplicates) {
+                objectTickHandlerHashMapNoDuplicates.remove(hashMap);
+            }
+            ObjectMarkedForRemovalNoDuplicates.clear();
         }
     }
 
@@ -106,21 +130,39 @@ public class TickHandler {
         return entityTickHandlerHashMap.get(entity) == tick;
     }
 
+    public static void whileLoop(int limit, int identifier, Runnable whileRun, Runnable runAtEnd) {
+        boolean test = true;
+        for (TickObject tickObject : whileLoopMap.keySet()) {
+            if (tickObject.identifier() == identifier) {
+                test = false;
+                break;
+            }
+        }
+        if (test) {
+            whileLoopMap.put(new TickObject(limit, identifier, whileRun, runAtEnd), 0);
+        }
+    }
+
     public static void waitThenRun(int delay, Runnable runnable) {
         objectTickHandlerHashMap.put(new TickObject(delay, runnable), 0);
     }
 
-    public static void waitThenRunNoDuplicateRequests(int delay, Runnable runnable) {
-        boolean foundDuplicates = false;
-        TickObject tickObject2 = new TickObject(delay, runnable);
-        for (TickObject tickObject : objectTickHandlerHashMapNoDuplicates.keySet()) {
-            if (tickObject.value() == tickObject2.value() && tickObject.runnable2().equals(tickObject2.runnable2())) {
-                foundDuplicates = true;
-                break;
+    public static void waitThenRunNoDuplicateRequests(int delay, int codeIdentifier, Runnable runnable) {
+        boolean foundDuplicates;
+        TickObject tickObject = new TickObject(delay, codeIdentifier, runnable);
+        foundDuplicates = false;
+        for (HashMap<TickObject, Integer> hashMap : objectTickHandlerHashMapNoDuplicates.keySet()) {
+            for (TickObject tickObject1 : hashMap.keySet()) {
+                if (hashMap.get(tickObject1) == codeIdentifier) {
+                    foundDuplicates = true;
+                }
             }
         }
+        System.out.println(foundDuplicates);
         if (!foundDuplicates) {
-            objectTickHandlerHashMapNoDuplicates.put(tickObject2, 0);
+            HashMap<TickObject, Integer> hashMap2 = new HashMap<TickObject, Integer>();
+            hashMap2.put(tickObject, codeIdentifier);
+            objectTickHandlerHashMapNoDuplicates.put(hashMap2, 0);
         }
     }
 

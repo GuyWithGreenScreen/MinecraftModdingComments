@@ -7,6 +7,8 @@
   "mixins": [
     "Sun",
     "Golem",
+    "FallingBlockMixin",
+    "Bread",
     "Rarity"
   ],
   "client": [

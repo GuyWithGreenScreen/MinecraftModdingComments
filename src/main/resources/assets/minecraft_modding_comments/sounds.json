@@ -1,0 +1,8 @@
+{
+  "casino_machine": {
+    "subtitle": "sounds.minecraft_modding_comments.casino_machine",
+    "sounds": [
+      "minecraft_modding_comments:casino_machine"
+    ]
+  }
+}

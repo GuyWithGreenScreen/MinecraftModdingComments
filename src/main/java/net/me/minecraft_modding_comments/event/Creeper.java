@@ -23,9 +23,11 @@ public class Creeper {
                 if (event.getEntity().distanceTo(((net.minecraft.world.entity.monster.Creeper) event.getEntity()).getTarget()) < 15) {
                     Level level = event.getEntity().level();
                     Entity entity = ((net.minecraft.world.entity.monster.Creeper) event.getEntity()).getTarget();
-                    TickHandler.waitThenRunNoDuplicateRequests(55, () -> {
-                        entity.sendSystemMessage(Component.literal("Hi"));
-                    });
+                    /*TickHandler.whileLoop(40, 14,() -> {
+                        System.out.println("while");
+                    }, () -> {
+                        System.out.println("done");
+                    }); */
                     event.getEntity().setDeltaMovement(0, event.getEntity().getDeltaMovement().y, 0);
                     event.getEntity().lookAt(EntityAnchorArgument.Anchor.EYES, ((net.minecraft.world.entity.monster.Creeper) event.getEntity()).getTarget().position());
                     PrimedTnt primedTnt = new PrimedTnt(EntityType.TNT, event.getEntity().level());

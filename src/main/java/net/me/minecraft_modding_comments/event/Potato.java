@@ -41,6 +41,8 @@ public class Potato {
     public static void PickupItem(ItemEntityPickupEvent.Pre event) {
         if (event.getPlayer().getTags().contains("hot_potato")) {
             event.setCanPickup(TriState.FALSE);
+        } else if (event.getPlayer().getMainHandItem().is(ModItems.GEIGERCOUNTER)) {
+            event.setCanPickup(TriState.FALSE);
         } else {
             event.setCanPickup(TriState.DEFAULT);
         }
