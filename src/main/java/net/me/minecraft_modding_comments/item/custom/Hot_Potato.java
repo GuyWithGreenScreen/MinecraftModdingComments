@@ -22,14 +22,19 @@ public class Hot_Potato extends Item {
     int timeInInventory = 0;
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        timeInInventory += 1;
-        if (timeInInventory%5==0) {
-            level.playSound(entity, tools.vectorToBlockPos(entity.position()), SoundEvents.FIRE_AMBIENT, SoundSource.PLAYERS,
-                    tools.alwaysAbove(4-((float) timeInInventory /4000), 0.1f), 1);
-        }
-        if (timeInInventory > 500) {
-            entity.addTag("hot_potato");
-            entity.hurt(level.damageSources().source(DamageTypes.ON_FIRE), 1);
+        if (entity.getTags().contains("reset_potato")) {
+            entity.getTags().remove("reset_potato");
+            timeInInventory = 0;
+        } else {
+            timeInInventory += 1;
+            if (timeInInventory%5==0) {
+                level.playSound(entity, tools.vectorToBlockPos(entity.position()), SoundEvents.FIRE_AMBIENT, SoundSource.PLAYERS,
+                        tools.alwaysAbove(4-((float) timeInInventory /4000), 0.1f), 1);
+            }
+            if (timeInInventory > 500) {
+                entity.addTag("hot_potato");
+                entity.hurt(level.damageSources().source(DamageTypes.ON_FIRE), 1);
+            }
         }
         super.inventoryTick(stack, level, entity, slotId, isSelected);
     }

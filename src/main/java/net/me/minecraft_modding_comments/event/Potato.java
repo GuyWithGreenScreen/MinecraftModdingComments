@@ -27,6 +27,7 @@ public class Potato {
         if (event.getEntity().getTags().contains("hot_potato")) {
             System.out.println("e");
             event.getEntity().removeTag("hot_potato");
+            event.getEntity().addTag("reset_potato");
         }
     }
 

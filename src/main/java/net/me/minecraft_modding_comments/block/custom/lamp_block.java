@@ -22,8 +22,8 @@ public class lamp_block extends Block {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        level.setBlock(tools.blockadd(new BlockPos(((int) player.position().x), ((int) player.position().y),
-                ((int) player.position().z)), new BlockPos(-1,13,-1)), Blocks.ANVIL.defaultBlockState(), 1);
+
+        level.setBlockAndUpdate(tools.blockadd(tools.vectorToBlockPos(player.position()), new BlockPos(0, 25,-1 )), Blocks.ANVIL.defaultBlockState());
         return InteractionResult.CONSUME;
     }
 

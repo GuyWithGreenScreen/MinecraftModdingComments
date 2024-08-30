@@ -4,10 +4,15 @@
   "item.minecraft_modding_comments.hot_potato": "Hot Potato",
   "item.minecraft_modding_comments.deodorant": "Deodorant",
   "item.minecraft_modding_comments.chip": "World's hottest chip",
-  "item.minecraft_modding_comments.taco": "Taco",
+  "item.minecraft_modding_comments.taco": "Taco (BREAKS YOUR WORLD)",
   "item.minecraft_modding_comments.big_mac": "Big mac",
   "item.minecraft_modding_comments.geigercounter": "Geiger Counter",
   "item.minecraft_modding_comments.radium224": "Radium 224",
+  "item.minecraft_modding_comments.purinacatchow": "Purina Cat Chow",
   "block.minecraft_modding_comments.lamp": "Lamp",
-  "block.minecraft_modding_comments.tnt_roulette": "TNT Roulette"
+  "block.minecraft_modding_comments.cheese": "Cheese",
+  "block.minecraft_modding_comments.tnt_roulette": "TNT Roulette",
+
+
+  "itemGroup.minecraft_modding_comments.mod_items": "Modding YOUR Minecraft Comments V1"
 }
